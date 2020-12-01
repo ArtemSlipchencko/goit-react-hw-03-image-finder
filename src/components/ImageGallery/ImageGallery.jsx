@@ -6,18 +6,19 @@ class ImageGallery extends Component {
 
   render () {
 
-    const {pictures} = this.props;
+    const {pictures, openModal} = this.props;
 
     return (
       <ul className="ImageGallery">
-        <ImageGalleryItem pictures={pictures} />
+        <ImageGalleryItem openModal={this.props.openModal} pictures={pictures} />
       </ul>
     )
   };
 };
 
 ImageGallery.propTypes = {
-  // bla: PropTypes.string,
+  pictures: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default ImageGallery;

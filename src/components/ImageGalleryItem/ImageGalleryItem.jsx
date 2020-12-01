@@ -1,8 +1,17 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //import { Test } from './ImageGalleryItem.styles';
 
-class ImageGalleryItem extends PureComponent { 
+class ImageGalleryItem extends Component { 
+
+  state = {
+    obj: {}
+  };
+
+  setObj = (el) => {
+    this.setState({obj: el});
+    this.props.openModal(el);
+  }
 
   render () {
     
@@ -10,15 +19,15 @@ class ImageGalleryItem extends PureComponent {
 
     return (
       pictures.map(el => 
-      <li key={el.id} className="ImageGalleryItem">
-        <img src={el.webformatURL} alt="image" className="ImageGalleryItem-image" />
+      <li key={el.id} className="ImageGalleryItem" onClick={() => {this.setObj(el)}}>
+        <img src={el.webformatURL} alt="" className="ImageGalleryItem-image" />
       </li>)
     )
   }
 }
 
 ImageGalleryItem.propTypes = {
-  // bla: PropTypes.string,
+  picture: PropTypes.object.isRequired,
 };
 
 export default ImageGalleryItem;

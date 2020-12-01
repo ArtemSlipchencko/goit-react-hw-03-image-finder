@@ -1,58 +1,30 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-//import { Test } from './Modal.styles';
 
-class Modal extends PureComponent { 
-  constructor(props) {
-    super(props);
+class Modal extends Component { 
 
-    this.state = {
-      hasError: false,
-    };
-  }
-
-  componentWillMount = () => {
-    console.log('Modal will mount');
-  }
-
-  componentDidMount = () => {
-    console.log('Modal mounted');
-  }
-
-  componentWillReceiveProps = (nextProps) => {
-    console.log('Modal will receive props', nextProps);
-  }
-
-  componentWillUpdate = (nextProps, nextState) => {
-    console.log('Modal will update', nextProps, nextState);
-  }
-
-  componentDidUpdate = () => {
-    console.log('Modal did update');
-  }
-
-  componentWillUnmount = () => {
-    console.log('Modal will unmount');
-  }
+  componentWillUnmount() {
+    window.removeEventListener("click", this.props.onClose);
+  };
 
   render () {
-    if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
-    }
-    return (
-      <div className="ModalWrapper">
-        Test content
-      </div>
-    );
-  }
-}
 
-Modal.propTypes = {
-  // bla: PropTypes.string,
+    window.addEventListener('keydown', this.props.onClose);
+
+    return (
+      <div onClick={this.props.onClick} className="Overlay">
+        <div className="Modal">
+          <img src={this.props.target} alt="" />
+        </div>
+      </div>
+    )
+  };
 };
 
-Modal.defaultProps = {
-  // bla: 'test',
+Modal.propTypes = {
+  target: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Modal;
