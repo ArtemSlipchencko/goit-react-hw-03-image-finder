@@ -17,8 +17,8 @@ class ImageGallery extends Component {
 };
 
 ImageGallery.propTypes = {
-  pictures: PropTypes.array.isRequired,
-  onClick: PropTypes.func.isRequired,
+  pictures: PropTypes.array,
+  onClick: PropTypes.func
 };
 
 export default ImageGallery;

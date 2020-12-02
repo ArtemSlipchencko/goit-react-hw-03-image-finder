@@ -4,13 +4,8 @@ import PropTypes from 'prop-types';
 
 class ImageGalleryItem extends Component { 
 
-  state = {
-    obj: {}
-  };
-
-  setObj = (el) => {
-    this.setState({obj: el});
-    this.props.openModal(el);
+  setObj = (query) => {
+    this.props.openModal(query);
   }
 
   render () {
@@ -19,7 +14,7 @@ class ImageGalleryItem extends Component {
 
     return (
       pictures.map(el => 
-      <li key={el.id} className="ImageGalleryItem" onClick={() => {this.setObj(el)}}>
+      <li key={el.id} className="ImageGalleryItem" onClick={() => {this.setObj(el.largeImageURL)}}>
         <img src={el.webformatURL} alt="" className="ImageGalleryItem-image" />
       </li>)
     )
@@ -27,7 +22,7 @@ class ImageGalleryItem extends Component {
 }
 
 ImageGalleryItem.propTypes = {
-  picture: PropTypes.object.isRequired,
+  picture: PropTypes.object,
 };
 
 export default ImageGalleryItem;
